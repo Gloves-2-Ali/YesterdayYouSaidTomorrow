@@ -1,0 +1,76 @@
+
+1. cd 
+cd  cd ..  cd .  cd /
+
+2. ls  # 查看文件和目录
+-l ：列出长数据串，包含文件的属性与权限数据等  
+-a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用）  
+-d ：仅列出目录本身，而不是列出目录的文件数据  
+-h ：将文件容量以较易读的方式（GB，kB等）列出来  
+-R ：连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来  
+
+3. cp  # 复制
+cp -a file1 file2  # 连同文件所有特性把file1复制为file2
+cp file1 dir  # 把file1复制到目录fir中
+
+4. mv  # 移动或者更名
+mv file1 file2 dir1  # 把file1和file2移到dir中，如果是移动操作，那么最后一个目标文件一定是一个目录（而前面要移动的文件可以有多个）
+mv file1 file2  # 把file1改名为file2
+mv dir1 dir2  # 把目录dir1改名为dir2
+
+5. ps  # 用于输出进程运行情况
+ps aux  # 查看系统所有的进程数据  
+ps ax  # 查看不与terminal有关的所有进程  
+ps -lA  # 查看系统所有的进程数据  
+
+6. rm  # 删除目录或文件
+rm -rf dir  # 强制递归删除目录dir中包括的所有文件
+
+7. grep  # 该命令常用于分析一行的信息，若当中有我们所需要的信息，就将该行显示出来，该命令通常与管道命令|一起使用，用于对一些命令的输出进行筛选加工
+grep [-acinv] [--color=auto] '查找字符串' filename
+-a ：将binary文件以text文件的方式查找数据  
+-c ：计算找到‘查找字符串’的次数  
+-i ：忽略大小写的区别，即把大小写视为相同  
+-v ：反向选择，即显示出没有‘查找字符串’内容的那一行
+
+# 例如：  
+# 取出文件/etc/man.config中包含MANPATH的行，并把找到的关键字加上颜色  
+grep --color=auto 'MANPATH' /etc/man.config  
+# 把ls -l的输出中包含字母file（不区分大小写）的内容输出  
+ls -l | grep -i file   # | 是管道命令
+
+8. kill  # 常用于杀死进程 ??
+kill -9 PID
+
+9. file  # 用于判断接在file命令后的文件的基本数据,因为在Linux下文件的类型并不是以后缀为分的，所以这个命令很有用
+file filename
+
+10. tar  # 对文件打包，默认不会压缩，可以加参数让它用gzip或者bzip压缩或解压
+
+# 看的晕晕乎乎的，其实gzip和gunzip就很好用吧。
+
+11. gzip  # 常用的压缩和解压命令
+gzip file  # 压缩文件
+gunzip file.gz  # 解压缩.gz包 
+
+12. cat  # 该命令用于查看文本文件的内容，后接要查看的文件名，通常可用管道与more和less一起使用，从而可以一页页地查看数据。
+cat text | more  # 分页查看text里的内容
+
+13. chmod  # 修改文件/目录的权限
+其中 u：用户，文件主人 g：主人同组的用户 o：其他用户 a：所有用户all x：执行操作 w：写操作 r：读操作  ugo+r=a+r
+chmod ug+w text  # 给text主人同组的用户加上对text的写权限
+
+另：用a,b,c三个数字分别表示user、group、other的权限，又有r=4,w=2,x=1,r+w+x=7
+故： chmod 777（abc） file 相当于 chmod a+rwx file   # 给所有用户都加上读写执行权限
+
+14. chown  # 修改文件的属主和属组
+chown -R ssg text  # 把text文件的属主改为ssg
+
+15. chgrp  # 修改文件或目录的所属组
+chgrp -R ssg text  # 把text文件的属组改为ssg
+
+
+待更新......
+
+
+
