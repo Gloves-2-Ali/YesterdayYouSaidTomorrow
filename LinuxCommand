@@ -22,6 +22,7 @@ mv dir1 dir2  # 把目录dir1改名为dir2
 ps aux  # 查看系统所有的进程数据  
 ps ax  # 查看不与terminal有关的所有进程  
 ps -lA  # 查看系统所有的进程数据  
+ps -ef | grep redis  # 查找与redis有关的信息并输出其信息
 
 6. rm  # 删除目录或文件
 rm -rf dir  # 强制递归删除目录dir中包括的所有文件
@@ -68,6 +69,31 @@ chown -R ssg text  # 把text文件的属主改为ssg
 
 15. chgrp  # 修改文件或目录的所属组
 chgrp -R ssg text  # 把text文件的属组改为ssg
+
+16. tail & head  # 查看日志技巧
+tail -n 10 test.log  # 查询日志底部10行的日志
+tail -n +10 test.log  # 查询10行之后的日志
+head -n 10 test.log  # 查看日志文件头10行日志
+head -n -10 test.log  # 查看日志除了最后10行的其他日志
+
+查看日志场景1：查找关键字附近的日志：
+cat -n test.log | grep "张三"   # 得到关键日志的行号，比如是在第102行，我们想找上下文92~112之间的内容
+cat -n test.log | tail -n +92 | head -n 20  # 用tail定位到92行的位置，然后用head查看从92行开始以后的日志中的前20行，也就是92~112行
+
+查看日志场景2：按时间范围来查找日志
+sed -n'/2013-10-15 14:15:36/,/2013-10-15 15:15:35/p' test.log
+大概格式就是: sed -n'/time1/,/time2/p' test.log 注意这两个时间必须是生成的日志中存在的时间才可以用
+而判断这个时间有没有在日志中生成要用 grep '2013-10-15 14:15:36' test.log 来判断
+
+补充1： cat -n test.log | grep "地形" | more 分页打印日志
+补充2： cat -n test.log | grep "地形" > xxx.txt 用'>xxx.txt'把搜到的日志保存在xxx.txt中
+
+17. sed  # 替换目录下所有文件的某字符串
+sed -i "s/zhangsan/lisi/g" 'grep zhangsan -rl /modules'  # 把/modules目录下的所有zhangsan都改为lisi
+注： -i表示inplace edit 就地修改文件 -r表示遍历搜索子目录 -l表示输出匹配的文件名
+
+sed 'y/1234567890/abcdEFGHIJ/' filename  # 把这个file里的字符对应位置做替换，比如1换为a，2换为b，只要是1~0就全部换为a~J
+
 
 
 待更新......
