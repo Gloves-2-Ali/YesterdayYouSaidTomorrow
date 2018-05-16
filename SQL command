@@ -10,23 +10,43 @@ USE mydb；
 3. 显示该数据库下的所有表：
 SHOW TABLES;
 
-4. 显示某一个表里所有列，假设表名是students
+4. 初始化表：
+TRUNCATE TABLE students；
+
+5. 显示某一个表里所有列，假设表名是students
 SHOW COLUMNS FROM students；  或者 DESCRIBE students；
 
-5. 查询（SELECT）（假设查询一个students表，里面有id，name等等几列）：
+6. 查询（SELECT）（假设查询一个students表，里面有id，name等等几列）：
 SELECT * FROM students where id = 17210240191    # 在students表中查询id为xxx的一整行信息
 SELECT id FROM students    # 在students表中查询id这一列
 
-6. 排序检索：
+7. 排序检索：
 # 将整个students表先按照id升序排列，id一样的行按照姓名降序排列，默认升序，DESC是降序
 SELECT * FROM students ORDER BY id,name DESC；
 
-7. 统计总数：
+8. 统计总数：
 SELECT count as totalcount FROM students;
 
-8. 求和：
+9. 求和：
 SELECT sum(列名) as sumvalue FROM students;
 注： 平均：avg(),最大max(),最小min() 的用法一样
 
-9. 选取前10条记录：
-SELECT top10 * FROM students where 范围
+10. 选取前10条记录用LIMIT：
+SELECT * FROM students ORDER BY XXX limit 10
+
+11. 过滤数据（WHERE）：
+过滤条件：=,<>,!=,<,<=,>,>=,BETWEEN 
+SELECT id,name FROM students WHERE id=233;
+SELECT id,name FROM students WHERE id BETWEEN 5 AND 10;
+SELECT name FROM students WHERE id IS NULL;
+
+# 也可以用AND/OR/IN/NOT组合WHERE子句，eg: xxx WHERE (xxx OR xxx) AND xxx;
+
+12. 用通配符进行过滤（LIKE-%）：
+%表示任意字符出现任意字数，也就是说：%xxx指xxx左边有字儿
+SELECT id,name FROM students WHERE name LIKE '%2b%'  # 把名字长得像2b的人的id和姓名找出来
+
+13. 使用别名：
+SELECT a.*,b.score as '01分数' FROM students a InnerJoin sc b ON a.s=b.s   
+as用作起别名，a，b可以分别看做students表和sc表的某一行，过滤条件是a.s=b.s 
+
