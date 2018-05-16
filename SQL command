@@ -18,3 +18,15 @@ SELECT * FROM students where id = 17210240191    # 在students表中查询id为x
 SELECT id FROM students    # 在students表中查询id这一列
 
 6. 排序检索：
+# 将整个students表先按照id升序排列，id一样的行按照姓名降序排列，默认升序，DESC是降序
+SELECT * FROM students ORDER BY id,name DESC；
+
+7. 统计总数：
+SELECT count as totalcount FROM students;
+
+8. 求和：
+SELECT sum(列名) as sumvalue FROM students;
+注： 平均：avg(),最大max(),最小min() 的用法一样
+
+9. 选取前10条记录：
+SELECT top10 * FROM students where 范围
