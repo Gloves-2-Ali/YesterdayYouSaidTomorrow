@@ -1,0 +1,20 @@
+
+# 假设数据库的名称为：mydb
+
+1. 显示所有的数据库
+SHOW DATABASES;
+
+2. 选择mydb数据库
+USE mydb；
+
+3. 显示该数据库下的所有表：
+SHOW TABLES;
+
+4. 显示某一个表里所有列，假设表名是students
+SHOW COLUMNS FROM students；  或者 DESCRIBE students；
+
+5. 查询（SELECT）（假设查询一个students表，里面有id，name等等几列）：
+SELECT * FROM students where id = 17210240191    # 在students表中查询id为xxx的一整行信息
+SELECT id FROM students    # 在students表中查询id这一列
+
+6. 排序检索：
