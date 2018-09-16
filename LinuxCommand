@@ -48,7 +48,10 @@ file filename
 
 10. tar  # 对文件打包，默认不会压缩，可以加参数让它用gzip或者bzip压缩或解压
 
-# 看的晕晕乎乎的，其实gzip和gunzip就很好用吧。
+压缩：
+tar -zcvf abc.tar.gz abc  # 把当前路径的abc文件夹压缩为abc.tar.gz   这两个是可以带路径的
+解压
+tar -zxvf abc.tar.gz name # 把当前路径的abc.tar.gz解压在当前目录下的name文件夹里
 
 11. gzip  # 常用的压缩和解压命令
 gzip file  # 压缩文件
