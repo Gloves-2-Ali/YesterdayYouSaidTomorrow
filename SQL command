@@ -32,7 +32,8 @@ SELECT sum(列名) as sumvalue FROM students;
 注： 平均：avg(),最大max(),最小min() 的用法一样
 
 10. 选取前10条记录用LIMIT：
-SELECT * FROM students ORDER BY XXX limit 10
+SELECT * FROM students ORDER BY 列名 limit 10
+#按列名升序排列，取前10条所有记录
 
 11. 过滤数据（WHERE）：
 过滤条件：=,<>,!=,<,<=,>,>=,BETWEEN 
